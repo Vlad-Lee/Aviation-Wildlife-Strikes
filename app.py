@@ -772,7 +772,7 @@ elif selected == "About":
 
         <p><a href='https://www.linkedin.com/in/vlad-lee' target='_blank'>LinkedIn</a></p>
         <p><a href='https://www.nera.com/experts/l/vladislav-lee.html?lang=en' target='_blank'>NERA</a></p>
-        <p><a href='https://github.com/bomimyhomie/Aviation-Wildlife-Strikes' target='_blank'>GitHub</a></p>
+        <p><a href='https://github.com/Vlad-Lee/Aviation-Wildlife-Strikes' target='_blank'>GitHub</a></p>
         <p>For questions or feedback, contact the author at 
         <a href='mailto:Vlad7984@gmail.com'>vlad7984@gmail.com</a>.</p>
     """, unsafe_allow_html=True)
