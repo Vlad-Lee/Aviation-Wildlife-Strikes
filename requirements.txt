@@ -1,0 +1,11 @@
+streamlit
+pandas
+altair
+snowflake-connector-python
+matplotlib
+numpy
+folium
+scipy
+seaborn
+streamlit-option-menu
+streamlit-folium
