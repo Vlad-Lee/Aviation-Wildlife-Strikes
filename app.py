@@ -11,6 +11,7 @@ import scipy.stats as stats
 import seaborn as sns
 from streamlit_option_menu import option_menu
 from io import StringIO
+import tempfile
 
 #Access Snowflake credentials from secrets
 sf_user = st.secrets["snowflake"]["user"]
@@ -20,13 +21,15 @@ sf_warehouse = st.secrets["snowflake"]["warehouse"]
 sf_database = st.secrets["snowflake"]["database"]
 sf_schema = st.secrets["snowflake"]["schema"]
 
-#Convert the private key string into a file-like object
-private_key_file = StringIO(sf_private_key)
+# Write the private key to a temporary file
+with tempfile.NamedTemporaryFile(delete=False) as temp_key_file:
+    temp_key_file.write(sf_private_key.encode())  # Write the private key content to the file
+    temp_key_file_path = temp_key_file.name  # Get the path to the temporary file
 
 #Connect to snowflake database
 conn = snowflake.connector.connect(
     user=sf_user,
-    private_key_file=private_key_file,
+    private_key_file=temp_key_file_path,
     account=sf_account,
     warehouse=sf_warehouse,
     database=sf_database,
