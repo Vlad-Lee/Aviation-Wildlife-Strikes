@@ -13,7 +13,7 @@ from streamlit_option_menu import option_menu
 from io import StringIO
 import tempfile
 
-#Access Snowflake credentials from secrets
+# Access Snowflake credentials from Streamlit secrets
 sf_user = st.secrets["snowflake"]["user"]
 sf_private_key = st.secrets["snowflake"]["private_key"]
 sf_account = st.secrets["snowflake"]["account"]
@@ -26,16 +26,18 @@ with tempfile.NamedTemporaryFile(delete=False) as temp_key_file:
     temp_key_file.write(sf_private_key.encode())  # Write the private key content to the file
     temp_key_file_path = temp_key_file.name  # Get the path to the temporary file
 
-#Connect to snowflake database
+# Connect to Snowflake database
 conn = snowflake.connector.connect(
     user=sf_user,
-    private_key_file=temp_key_file_path,
+    private_key_file=temp_key_file_path,  # Use the path of the temporary key file
     account=sf_account,
     warehouse=sf_warehouse,
     database=sf_database,
     schema=sf_schema
 )
-cursor = conn.cursor()   
+
+# Create a cursor and perform operations
+cursor = conn.cursor()  
 
 ###################################################################################################
 #Configure settings for streamlit app
